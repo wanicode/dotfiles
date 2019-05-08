@@ -9,7 +9,7 @@ filetype plugin indent on
 " Nicer searching
 set incsearch               " Incremental searching
 set hlsearch                " Highlight matches
-set showmatch               " Show matching brackets
+" set showmatch               " Show matching brackets
 set ignorecase              " Search case-insensitive
 set smartcase               " ...except when something is capitalized
 set nospell                 " nospell by default
@@ -35,7 +35,7 @@ set backspace=indent,eol,start " Backspace through everything
 
 set nocp
 set number                  " Line numbering
-set relativenumber          " relative lines
+" set relativenumber          " relative lines
 
 set wildmenu " Wildmode, some command completion
 set wildmode=list:longest,full
@@ -43,44 +43,34 @@ set wildmode=list:longest,full
 set mouse=a " Enable mouse support - even in tmux \o/
 
 " Highlight current line
-set cursorline
-:hi CursorLine   cterm=NONE ctermbg=235 guibg=grey
+" set cursorline
+" hi CursorLine   cterm=NONE ctermbg=235 guibg=grey
 
 " Deactivate swap file creation
 set noswapfile
 
 set scrolloff=15
+set autoread
 
 if exists('&inccommand')
   set inccommand=split
 endif
 
-""""""""""""""""""""""
-"     Mappings       "
-""""""""""""""""""""""
+" Mappings {{{
 
 " Switch leader key to `<Space>`
 let mapleader = "\<Space>"
 
-"""""""""""
-" Toggles "
-"""""""""""
-" toggle highlights
-nnoremap <Leader>th :noh<CR>
-" toggle relative numbers
-nnoremap <silent> <Leader>tn :set relativenumber!<CR>
-" toggle nerdtree
-nnoremap <Leader>tt :NERDTreeToggle<CR>
-nnoremap <Leader>tf :NERDTreeFind<CR>
-
+" fast close
+nnoremap <Leader>q :q<CR>
 " quick save
-nnoremap S :w<CR>
+nnoremap <C-s> :w<CR>
 
 " cool resizing
-nnoremap <Left> :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
-nnoremap <Up> :resize -2<CR>
-nnoremap <Down> :resize +2<CR>
+" nnoremap <Left> :vertical resize +2<CR>
+" nnoremap <Right> :vertical resize -2<CR>
+" nnoremap <Up> :resize -2<CR>
+" nnoremap <Down> :resize +2<CR>
 
 " vimux \o/
 nnoremap <F11> :w<CR>:VimuxPromptCommand<CR>
@@ -95,29 +85,61 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " Split (unjoin) lines
 nnoremap K i<CR><ESC>
 
-" remove highlights
-map <C-c> :noh<CR>
-
-" some git maps
-map <Leader>gb :Gblame<CR>
-map <Leader>gc :Gcommit<CR>
-map <Leader>gd :Gdiff<CR>
-map <Leader>gee :Gedit<CR>
-map <Leader>ges :Gsplit<CR>
-map <Leader>get :Gtabedit<CR>
-map <Leader>gev :Gvsplit<CR>
-map <Leader>gl :Glog<CR>
-map <Leader>gr :Gread<CR>
-map <Leader>gs :Gstatus<CR>
-map <Leader>gw :Gwrite<CR>
+" Git {{{
+noremap <Leader>gfb :Gblame<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gd :Gdiff<CR>
+noremap <Leader>gee :Gedit<CR>
+noremap <Leader>ges :Gsplit<CR>
+noremap <Leader>get :Gtabedit<CR>
+noremap <Leader>gev :Gvsplit<CR>
+noremap <Leader>gl :Glog<CR>
+noremap <Leader>gr :Gread<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gw :Gwrite<CR>
+noremap <Leader>gbb :Git checkout<Space>
+noremap <Leader>gbn :Git checkout -b<Space>
+noremap <Leader>gap :Git add -p<Space>
+noremap <Leader>gaa :Git add<Space>
+noremap <Leader>gpo :Git push origin<Space>
+noremap <Leader>gbf :Git fetch<CR>
+" }}}
 
 " Git checked in files
-map <Leader>F :Files<CR>
-map <Leader>f :GFiles<CR>
-map <Leader>s :Ag 
-map <Leader>w :Windows<CR> 
-map <Leader>b :Buffers<CR> 
-map <Leader>h :History<CR> 
+noremap <Leader>F :Files<CR>
+noremap <Leader>f :GFiles<CR>
+noremap <Leader>s :Ag 
+noremap <Leader>h :History<CR> 
+
+
+
+" Buffers {{{
+" search through buffers
+noremap <Leader>bb :Buffers<CR>
+" previous buffer
+noremap <Leader>bp :b#<CR>
+" }}}
+
+" Toggles {{{
+" toggle highlights
+nnoremap <Leader>th :noh<CR>
+" toggle relative numbers
+nnoremap <silent> <Leader>tn :set relativenumber!<CR>
+" toggle nerdtree
+nnoremap <Leader>tt :NERDTreeToggle<CR>
+nnoremap <Leader>tf :NERDTreeFind<CR>
+" }}}
+
+" Windows {{{
+" search through windows
+noremap <Leader>ww :Windows<CR>
+" close all other windows
+noremap <Leader>wm :only<CR>
+" split horizontally
+noremap <Leader>wh :vsplit<CR>
+" split vertically
+noremap <Leader>wv :split<CR>
+" }}}
 
 " Marks
 nmap <Leader>' :Marks<CR>
@@ -126,20 +148,20 @@ nmap <Leader>' :Marks<CR>
 " nmap <Leader>t :BTags<CR>
 " nmap <Leader>T :Tags<CR>
 
-imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <C-x><C-l> <plug>(fzf-complete-line)
 
 " ale map 
 map <Leader>n :ALENext<CR>
 map <Leader>N :ALEPrevious<CR>
 
 " instant emmet
-map <c-e> <c-y>,
+noremap <C-e> <C-y>,
 
 " edit files
-map <Leader>ev :e ~/.vimrc<CR>
-map <Leader>et :e ~/.tmux.conf<CR>
-map <Leader>ez :e ~/.zshrc<CR>
-map <Leader>es :source $MYVIMRC<CR>
+noremap <Leader>ev :e ~/.vimrc<CR>
+noremap <Leader>et :e ~/.tmux.conf<CR>
+noremap <Leader>ez :e ~/.zshrc<CR>
+noremap <Leader>es :source $MYVIMRC<CR>
 
 " Switch between tabs
 nnoremap <Leader>1 1gt
@@ -153,10 +175,8 @@ nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
 
 " window management
-nnoremap <Leader>wm :only<CR>
-nnoremap <Leader>wh :vsplit<CR>
-nnoremap <Leader>wv :split<CR>
-
+" }}}
+"
 """""""""""""
 " AUTOCMD's "
 """""""""""""
@@ -183,6 +203,28 @@ autocmd Filetype markdown let &colorcolumn=join(range(81,81),",")
 """""""""""""""""""""""
 "   Plugin Settings   "
 """""""""""""""""""""""
+
+" lightline theme
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'filetype' ],
+      \              [ '' ],
+      \              [ 'fileformat', 'fileencoding' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ }
+      \ }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -284,7 +326,10 @@ call plug#begin('~/.vim/vim-plug-plugins')
     Plug 'mattn/emmet-vim'
 
     " vuejs plugin
-    Plug 'posva/vim-vue'
+    " Plug 'posva/vim-vue'
+
+    " syntax highlights
+    Plug 'sheerun/vim-polyglot'
 
     """""""""""""""""""""""""""""""
     "     Editor Plugins          "
@@ -301,15 +346,28 @@ call plug#begin('~/.vim/vim-plug-plugins')
     " filebrowser
     Plug 'scrooloose/nerdtree'
 
+    " () [] {} :)
+    Plug 'jiangmiao/auto-pairs'
+
+    " easily comment/uncomment lines
+    Plug 'tpope/vim-commentary'
+
+    " easily change/add/delete surroundings
+    Plug 'tpope/vim-surround'
+
     " fuzzy finder
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
 
     " completion framework
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+ 
+    " statusline
+    Plug 'itchyny/lightline.vim'
 
     " colorscheme
     Plug 'morhetz/gruvbox'
+    Plug 'shinchu/lightline-gruvbox.vim'
 
     " syntax checking
     Plug 'w0rp/ale'
@@ -322,9 +380,6 @@ call plug#begin('~/.vim/vim-plug-plugins')
 
     " easily navigate between vim and tmux panes
     Plug 'christoomey/vim-tmux-navigator'
-    
-    " statusline
-    Plug 'vim-airline/vim-airline'
 
     " show changed lines in file
     Plug 'airblade/vim-gitgutter'
