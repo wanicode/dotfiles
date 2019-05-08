@@ -1,0 +1,9 @@
+EXPORTS=~/.zsh/exports
+Z=/usr/local/etc/profile.d/z.sh
+NVM=/usr/local/opt/nvm/nvm.sh
+ANTIGEN=~/.modules/antigen.zsh
+
+source $EXPORTS
+source $Z
+source $NVM
+source $ANTIGEN
