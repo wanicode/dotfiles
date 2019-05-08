@@ -1,0 +1,4 @@
+;;; ~/.doom.d/+auth.el -*- lexical-binding: t; -*-
+
+(setq wanicode-spotify-id "") ;; fill with id
+(setq wanicode-spotify-secret "") ;; fill with secret
