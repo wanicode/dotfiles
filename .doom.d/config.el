@@ -7,11 +7,12 @@
 (load! "+bindings")
 
 ;; Theme Config
-(require 'doom-themes)
-(setq doom-font "Fira Code"
-      doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-spacegrey t)
+(setq-default
+ doom-theme    'doom-spacegrey
+ doom-font     (font-spec :family "Fira Code" :size 12)
+ doom-big-font (font-spec :family "Fira Code" :size 18)
+ doom-themes-enable-bold t    ; if nil, bold is universally disabled
+ doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
 ;; Avy Configuration
 (def-package! avy
