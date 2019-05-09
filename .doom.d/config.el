@@ -14,18 +14,18 @@
  doom-themes-enable-bold t    ; if nil, bold is universally disabled
  doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
+(setq display-line-numbers-type nil)
+
 ;; Avy Configuration
-(def-package! avy
-  :config
-    (setq avy-all-windows t)
-    (setq avy-timeout-seconds 0.4)
-    (setq avy-keys '(?t ?n ?s ?e ?r ?i ?a ?o ?g ?k)))
+(after! avy
+  (setq avy-all-windows t)
+  (setq avy-timeout-seconds 0.4)
+  (setq avy-keys '(?t ?n ?s ?e ?r ?i ?a ?o ?g ?k)))
 
 ;; LSP Configuration
-(def-package! lsp
-  :config
-    (setq lsp-ui-doc-enable nil) ;; disable docs
-    (setq lsp-ui-sideline-enable nil)) ;; disable sideline
+(after! lsp-ui
+  (setq lsp-ui-doc-enable nil) ;; disable docs
+  (setq lsp-ui-sideline-enable nil)) ;; disable sideline
 
 ;; Color Identifiers
 ;; (def-package! color-identifiers-mode
@@ -33,26 +33,22 @@
 ;;   (global-color-identifiers-mode))
 
 ;; Which Key
-(def-package! which-key
-  :init
+(after! which-key
   (setq which-key-idle-delay 0.4))
 
 ;; Treemacs config
-(def-package! treemacs
-  :init
+(after! treemacs
+  (setq treemacs-position 'right)
   (setq treemacs-no-png-images t))
 
 ;; Org-Mode
-(def-package! org
-  :init
+(after! org
     (setq-default org-default-notes-file "~/Dropbox/org/tasks.org")
-  :config
     (setq org-agenda-files '("~/Dropbox/org")))
 
 ;; TODO projectile
-(def-package! projectile
-  :config
-  (add-to-list 'projectile-globally-ignored-directories "engine"))
+(after! projectile
+    (add-to-list 'projectile-globally-ignored-directories "engine"))
 
 ;; Winum Mode
 (def-package! winum
@@ -62,7 +58,6 @@
   (setq winum-auto-assign-0-to-minibuffer nil))
 
 ;; Spotify
-(def-package! counsel-spotify
-  :config
+(after! counsel-spotify
   (setq counsel-spotify-client-id wanicode-spotify-id)
   (setq counsel-spotify-client-secret wanicode-spotify-secret))
