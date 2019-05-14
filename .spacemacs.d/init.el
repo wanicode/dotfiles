@@ -52,7 +52,7 @@ This function should only modify configuration layer settings."
      helm
      (auto-completion :variables auto-completion-idle-delay 0.8)
      emacs-lisp
-     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+     evil-snipe
      git
      markdown
      multiple-cursors
@@ -466,12 +466,18 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (require 'projectile)
-  (add-to-list 'projectile-globally-ignored-directories "engine/Shopware")
-
+  ;; Org Configuration
   (with-eval-after-load 'org
     (setq-default org-default-notes-file "~/Dropbox/org/tasks.org"))
   (setq org-agenda-files '("~/Dropbox/org"))
+  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE" "DELEGATED" "CANCELLED")))
+  (setq hl-todo-keyword-faces
+        (quote
+         (("TODO" . "#dc752f")
+          ("PROGRESS" . "#4f97d7")
+          ("CANCELLED" . "#f2241f")
+          ("DONE" . "#86dc2f")
+          ("DELEGATED" . "#b1951d"))))
 
   ;; Avy Configuration
   (setq avy-all-windows t) ;; search through all windows
@@ -522,23 +528,6 @@ This function is called at the very end of Spacemacs initialization."
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#292617")
- '(hl-todo-keyword-faces
-   (quote
-    (("TODO" . "#dc752f")
-     ("NEXT" . "#dc752f")
-     ("THEM" . "#2d9574")
-     ("PROG" . "#4f97d7")
-     ("OKAY" . "#4f97d7")
-     ("DONT" . "#f2241f")
-     ("FAIL" . "#f2241f")
-     ("DONE" . "#86dc2f")
-     ("NOTE" . "#b1951d")
-     ("KLUDGE" . "#b1951d")
-     ("HACK" . "#b1951d")
-     ("TEMP" . "#b1951d")
-     ("FIXME" . "#dc752f")
-     ("XXX" . "#dc752f")
-     ("XXXX" . "#dc752f"))))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
  '(projectile-globally-ignored-directories
    (quote

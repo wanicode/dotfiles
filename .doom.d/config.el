@@ -5,6 +5,7 @@
 (load! "+auth")
 (load! "+fira-code")
 (load! "+bindings")
+(load! "+spotify")
 
 ;; Theme Config
 (setq-default
@@ -43,21 +44,19 @@
 
 ;; Org-Mode
 (after! org
-    (setq-default org-default-notes-file "~/Dropbox/org/tasks.org")
+    (setq org-directory "~/Dropbox/org")
     (setq org-agenda-files '("~/Dropbox/org")))
+    (setq +org-capture-todo-file "~/Dropbox/org/todo.org")
+    (setq +org-capture-notes-file "~/Dropbox/org/notes.org")
+    (setq +org-capture-changelog-file "~/Dropbox/org/changelog.org")
+
+(after! evil-snipe
+  (setq evil-snipe-spillover-scope 'visible))
 
 ;; TODO projectile
 (after! projectile
     (add-to-list 'projectile-globally-ignored-directories "engine"))
 
 ;; Winum Mode
-(def-package! winum
-  :after-call (doom-switch-window-hook)
-  :config
-  (winum-mode +1)
+(after! winum
   (setq winum-auto-assign-0-to-minibuffer nil))
-
-;; Spotify
-(after! counsel-spotify
-  (setq counsel-spotify-client-id wanicode-spotify-id)
-  (setq counsel-spotify-client-secret wanicode-spotify-secret))

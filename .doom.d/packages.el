@@ -9,5 +9,4 @@
 ;; Color Identifiers Mode
 ;; (package! color-identifiers-mode)
 
-(package! winum)
 (package! counsel-spotify)

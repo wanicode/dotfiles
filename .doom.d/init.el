@@ -4,10 +4,11 @@
 (doom!
        :completion
        company           ; the ultimate code completion backend
-       ;;helm             ; the *other* search engine for love and life
+       ;; (helm             ; the *other* search engine for love and life
+       ;;  +fuzzy)           ; ...searching in fuzzy mode
        ;;ido              ; the other *other* search engine...
        (ivy              ; a search engine for love and life
-        +fuzzy           ; ...searching in fuzzy mode
+        ;; +fuzzy           ; ...searching in fuzzy mode
         +icons)          ; ...with fancy icons
 
        :ui
@@ -30,7 +31,8 @@
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows
+       (window-select    ; visually switch windows
+         +numbers)     
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :editor
@@ -100,7 +102,7 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
