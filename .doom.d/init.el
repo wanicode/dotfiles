@@ -4,7 +4,7 @@
 (doom!
        :completion
        company           ; the ultimate code completion backend
-       ;; (helm             ; the *other* search engine for love and life
+       ;; helm             ; the *other* search engine for love and life
        ;;  +fuzzy)           ; ...searching in fuzzy mode
        ;;ido              ; the other *other* search engine...
        (ivy              ; a search engine for love and life
@@ -54,7 +54,7 @@
        electric          ; smarter, keyword-based electric-indent
        ;;eshell            ; a consistent, cross-platform shell (WIP)
        imenu             ; an imenu sidebar and searchable code index
-       ;;term              ; terminals in Emacs
+       term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
 
        :tools
@@ -94,7 +94,7 @@
        data              ; config/data formats
        ;;erlang            ; an elegant language for a more civilized age
        ;;elixir            ; erlang done right
-       ;;elm               ; care for a cup of TEA?
+       elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
        ;;go                ; the hipster dialect

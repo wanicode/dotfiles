@@ -10,7 +10,7 @@
 ;; Theme Config
 (setq-default
  doom-theme    'doom-spacegrey
- doom-font     (font-spec :family "Fira Code" :size 12)
+ doom-font     (font-spec :family "Fira Code" :size 13)
  doom-big-font (font-spec :family "Fira Code" :size 18)
  doom-themes-enable-bold t    ; if nil, bold is universally disabled
  doom-themes-enable-italic t) ; if nil, italics is universally disabled
@@ -22,6 +22,10 @@
   (setq avy-all-windows t)
   (setq avy-timeout-seconds 0.4)
   (setq avy-keys '(?t ?n ?s ?e ?r ?i ?a ?o ?g ?k)))
+
+;; Ivy Configuration
+(after! ivy
+  (setq ivy-re-builders-alist '((t . ivy--regex-ignore-order))))
 
 ;; LSP Configuration
 (after! lsp-ui

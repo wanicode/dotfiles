@@ -13,7 +13,13 @@
 
  (:leader
    "!" #'shell-command
-   [deletechar] #'evil-switch-to-windows-last-buffer)
+   "TAB" #'evil-switch-to-windows-last-buffer)
+
+ (:when (featurep! :ui workspaces)
+   (:leader
+     "l" doom-leader-workspace-map)
+   (:map doom-leader-workspace-map
+      :desc "Display tab bar" "l" #'+workspace/display))
 
  (:after evil
    (:leader
