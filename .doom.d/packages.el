@@ -10,3 +10,7 @@
 ;; (package! color-identifiers-mode)
 
 (package! counsel-spotify)
+(package! pandoc-mode)
+
+(eval-after-load "org"
+  '(require 'ox-odt nil t))

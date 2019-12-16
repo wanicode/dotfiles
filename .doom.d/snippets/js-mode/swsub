@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Shopware-Subscribe
+# key: swsub
+# condition: t                                      
+# --
+;(function ($, window) {
+    $.subscribe('${1:Event}', function (event, plugin) {
+        ${0:Code}
+    });
+})(jQuery, window);

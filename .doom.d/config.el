@@ -10,12 +10,12 @@
 ;; Theme Config
 (setq-default
  doom-theme    'doom-spacegrey
- doom-font     (font-spec :family "Fira Code" :size 13)
- doom-big-font (font-spec :family "Fira Code" :size 18)
+ doom-font     (font-spec :family "Fira Code" :size 18)
+ doom-big-font (font-spec :family "Fira Code" :size 23)
  doom-themes-enable-bold t    ; if nil, bold is universally disabled
  doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type 'relative)
 
 ;; Avy Configuration
 (after! avy

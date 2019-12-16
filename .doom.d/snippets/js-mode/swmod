@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: shopware-module
+# key: swmod
+# condition: t        
+# --
+;(function ($, window) {
+    $.plugin('${1:Name}', {
+        defaults: {
+            ${2:Selector}
+        },
+
+        init: function () {
+            var me = this;
+
+            me.applyDataAttributes();
+
+            ${0:dostuff}
+
+            me.registerEvents();
+        },
+
+        registerEvents: function () {
+            var me = this;
+        }
+    });
+})(jQuery, window);
