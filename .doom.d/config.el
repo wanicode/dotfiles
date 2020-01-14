@@ -5,7 +5,8 @@
 (load! "+auth")
 (load! "+fira-code")
 (load! "+bindings")
-(load! "+spotify")
+
+(setq multi-term-program "/usr/local/bin/fish")
 
 ;; Theme Config
 (setq-default
@@ -15,7 +16,15 @@
  doom-themes-enable-bold t    ; if nil, bold is universally disabled
  doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type nil)
+
+(defun my/projectile-search-with-hidden ()
+  (interactive)
+  (let* ((projectile-generic-command
+          (concat projectile-generic-command " --no-ignore"))
+         (projectile-enable-caching)
+         (projectile-git-command projectile-generic-command))
+    (call-interactively 'counsel-projectile-find-file)))
 
 ;; Avy Configuration
 (after! avy
@@ -23,14 +32,15 @@
   (setq avy-timeout-seconds 0.4)
   (setq avy-keys '(?t ?n ?s ?e ?r ?i ?a ?o ?g ?k)))
 
-;; Ivy Configuration
-(after! ivy
-  (setq ivy-re-builders-alist '((t . ivy--regex-ignore-order))))
-
 ;; LSP Configuration
-(after! lsp-ui
-  (setq lsp-ui-doc-enable nil) ;; disable docs
-  (setq lsp-ui-sideline-enable nil)) ;; disable sideline
+;; (after! lsp
+;;   :config
+;;   (setq lsp-enable-file-watchers nil))
+;; (after! lsp-ui
+;;   (setq lsp-ui-doc-enable nil) ;; disable docs
+;;   (setq lsp-ui-sideline-enable nil)) ;; disable sideline
+(add-hook! 'php-mode-hook
+           (setq lsp-enable-file-watchers nil))
 
 ;; Color Identifiers
 ;; (def-package! color-identifiers-mode
@@ -64,3 +74,5 @@
 ;; Winum Mode
 (after! winum
   (setq winum-auto-assign-0-to-minibuffer nil))
+
+(add-to-list 'auto-mode-alist '("\\.tpl\\'" . html-mode))
